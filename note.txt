@@ -1,0 +1,83 @@
+sqlserver
+
+分組後數量大於
+SELECT name FROM userinfo GROUP BY name,age HAVING COUNT(name)>1
+
+返回查出数据的前百分之n条数据
+SELECT TOP NUMBER PERCENT COLUMN1,COLUMN2,COLUMN3
+FROM TABLENAME
+
+查询表里的头一条数据，如果存在，则返回1,沒有返回空行
+SELECT TOP 1 1 FROM course
+
+
+ROW_NUMBER() OVER([PARTITION BY Colums1] ORDER BY colums2)  
+DENSE_RANK() OVER([PARTITION BY Colums1] ORDER BY colums2)  
+RANK() OVER([PARTITION BY colums1] ORDER BY colums2) 
+
+
+select id, name, ROW_NUMBER() over(order by name desc) as rows from course
+
+
+select ROW_NUMBER() over(partition by institude_id  order by name) as rows, id, name, institude_id from course
+rows id name		institude_id
+1	2	Course A	1
+2	3	Course B	1
+1	4	Course C	2
+2	5	Course D	2
+1	6	Course E	3
+2	7	Course F	3
+
+
+统计每一个客户最近下的订单是第几次下的订单。 
+with tabs as 
+( 
+select ROW_NUMBER() over(partition by customerID  order by totalPrice) as rows,customerID,totalPrice, DID from OP_Order 
+ ) 
+select MAX(rows) as '下单次数',customerID from tabs group by customerID
+
+
+WITH NODES   
+ AS ( 
+ SELECT * FROM DBO.T_ADMIN_RMS_CD C WHERE C.XH = '200909271033495d64880c587a4beda5bbac86fd92e0ec'
+ UNION ALL   
+ SELECT CSC.*FROM T_ADMIN_RMS_CD AS CSC INNER JOIN 
+  NODES  AS RC ON CSC.FCDXH = RC.XH)  
+  SELECT FROM T_ADMIN_RMS_CD WHERE XH IN (SELECT XH  FROM NODES N )  
+
+
+
+
+oracle
+第一种：start with 子节点ID='...' connect by prior 子节点ID = 父节点ID
+查询结果自己所有的后代节点（包括自己）
+第二种：start with 子节点ID='...' connect by 子节点ID = prior 父节点ID
+查询结果自己所有的前代节点（包括自己）。
+
+
+
+select name,course,row_number() over(partition by course order by score desc) rank from student;
+12345
+select name,course,rank() over(partition by course order by score desc) rank from student;
+12245
+select name,course,dense_rank() over(partition by course order by score desc) rank from student;
+12234
+
+--每门课程第一名只取一个： 
+select * from (select name,course,row_number() over(partition by course order by score desc) rank from student) where rank=1;
+--每门课程第一名取所有： 
+select * from (select name,course,dense_rank() over(partition by course order by score desc) rank from student) where rank=1;
+--每门课程第一名取所有：
+select * from (select name,course,rank() over(partition by course order by score desc) rank from student) where rank=1;
+
+
+select * from(select rownum no ,id,name from student) where no>2;
+
+
+Char("48") 0
+Char("65") A
+Char("90") Z
+Char("97") a　
+Char("122") z　
+第一种办法：通过charAt(i)，把字符串的每位变成char型，然后用当前字符减去字符0 （temp_char-'0'），得到当前字符的int值。 
+第二种办法：把字符再转成字符串，然后再强制转换成int型。
