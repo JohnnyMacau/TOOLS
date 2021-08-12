@@ -1,0 +1,4 @@
+在eclipse.ini內容的最下面加上以下設定後存檔關閉。
+
+-Xbootclasspath/a:lombok.jar
+-javaagent:lombok.jar
