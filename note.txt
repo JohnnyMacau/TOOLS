@@ -1,3 +1,4 @@
+
 sqlserver
 
 分組後數量大於
@@ -81,3 +82,7 @@ Char("97") a　
 Char("122") z　
 第一种办法：通过charAt(i)，把字符串的每位变成char型，然后用当前字符减去字符0 （temp_char-'0'），得到当前字符的int值。 
 第二种办法：把字符再转成字符串，然后再强制转换成int型。
+
+beclipse.ini
+-Xbootclasspath/a:lombok.jar
+-javaagent:lombok.jar
