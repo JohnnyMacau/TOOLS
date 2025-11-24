@@ -1,0 +1,39 @@
+{
+  "oauth2": {
+    "providers": {
+      "google": {
+        "clientId": "YOUR_GOOGLE_CLIENT_ID",
+        "clientSecret": "YOUR_GOOGLE_CLIENT_SECRET",
+        "authorizationUri": "https://accounts.google.com/o/oauth2/v2/auth",
+        "tokenUri": "https://oauth2.googleapis.com/token",
+        "userInfoUri": "https://www.googleapis.com/oauth2/v3/userinfo",
+        "redirectUri": "http://localhost:8080/oauth2/callback",
+        "scope": "openid email profile"
+      },
+      "microsoft": {
+        "clientId": "YOUR_AZURE_CLIENT_ID",
+        "clientSecret": "YOUR_AZURE_CLIENT_SECRET",
+        "authorizationUri": "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
+        "tokenUri": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+        "userInfoUri": "https://graph.microsoft.com/v1.0/me",
+        "redirectUri": "http://localhost:8080/oauth2/callback",
+        "scope": "openid email profile User.Read"
+      },
+      "github": {
+        "clientId": "YOUR_GITHUB_CLIENT_ID",
+        "clientSecret": "YOUR_GITHUB_CLIENT_SECRET",
+        "authorizationUri": "https://github.com/login/oauth/authorize",
+        "tokenUri": "https://github.com/login/oauth/access_token",
+        "userInfoUri": "https://api.github.com/user",
+        "redirectUri": "http://localhost:8080/oauth2/callback",
+        "scope": "user:email"
+      }
+    },
+    "security": {
+      "tokenExpirationMinutes": 60,
+      "refreshTokenExpirationDays": 30,
+      "enableCsrfProtection": true,
+      "secureCookies": true
+    }
+  }
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<saml-config>
+    <!-- SAML 2.0 Configuration for Identity Providers -->
+    
+    <!-- Service Provider (SP) Configuration -->
+    <service-provider>
+        <entity-id>https://your-app.example.com</entity-id>
+        <assertion-consumer-service>
+            <url>https://your-app.example.com/saml/acs</url>
+            <binding>urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST</binding>
+        </assertion-consumer-service>
+        <single-logout-service>
+            <url>https://your-app.example.com/saml/logout</url>
+            <binding>urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect</binding>
+        </single-logout-service>
+        <name-id-format>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</name-id-format>
+    </service-provider>
+    
+    <!-- Identity Provider (IdP) Configuration - Okta Example -->
+    <identity-provider name="okta">
+        <entity-id>http://www.okta.com/YOUR_OKTA_ID</entity-id>
+        <single-sign-on-service>
+            <url>https://your-org.okta.com/app/YOUR_APP_ID/sso/saml</url>
+            <binding>urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect</binding>
+        </single-sign-on-service>
+        <single-logout-service>
+            <url>https://your-org.okta.com/app/YOUR_APP_ID/slo/saml</url>
+            <binding>urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect</binding>
+        </single-logout-service>
+        <x509-certificate>
+            <!-- Replace with your IdP certificate -->
+            MIIDpDCCAoygAwIBAgIGAXXXXXXXXXMA0GCSqGSIb3DQEBCwUAMIGSMQswCQYD
+            ... (certificate content) ...
+        </x509-certificate>
+    </identity-provider>
+    
+    <!-- Identity Provider (IdP) Configuration - Azure AD Example -->
+    <identity-provider name="azure-ad">
+        <entity-id>https://sts.windows.net/YOUR_TENANT_ID/</entity-id>
+        <single-sign-on-service>
+            <url>https://login.microsoftonline.com/YOUR_TENANT_ID/saml2</url>
+            <binding>urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST</binding>
+        </single-sign-on-service>
+        <single-logout-service>
+            <url>https://login.microsoftonline.com/YOUR_TENANT_ID/saml2</url>
+            <binding>urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect</binding>
+        </single-logout-service>
+        <x509-certificate>
+            <!-- Replace with your Azure AD certificate -->
+            MIIDPjCCAiagAwIBAgIQVWmXY/+9RqFA/OG9kFulHDANBgkqhkiG9w0BAQsFADA
+            ... (certificate content) ...
+        </x509-certificate>
+    </identity-provider>
+    
+    <!-- Security Configuration -->
+    <security>
+        <sign-requests>true</sign-requests>
+        <encrypt-assertions>true</encrypt-assertions>
+        <signature-algorithm>http://www.w3.org/2001/04/xmldsig-more#rsa-sha256</signature-algorithm>
+        <digest-algorithm>http://www.w3.org/2001/04/xmlenc#sha256</digest-algorithm>
+    </security>
+    
+    <!-- Attribute Mapping -->
+    <attribute-mapping>
+        <attribute saml-name="email" app-name="userEmail"/>
+        <attribute saml-name="firstName" app-name="givenName"/>
+        <attribute saml-name="lastName" app-name="surname"/>
+        <attribute saml-name="groups" app-name="userGroups"/>
+    </attribute-mapping>
+</saml-config>
