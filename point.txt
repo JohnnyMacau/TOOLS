@@ -3,7 +3,8 @@ Point - Programming and Database Notes
 1. Geometric Point (数据结构)
    - 2D Point: (x, y)
    - 3D Point: (x, y, z)
-   - Distance formula: sqrt((x2-x1)^2 + (y2-y1)^2)
+   - 2D Distance: sqrt((x2-x1)^2 + (y2-y1)^2)
+   - 3D Distance: sqrt((x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2)
 
 2. Decimal Point (精度控制)
    - Java: BigDecimal for precise decimal calculations
@@ -37,8 +38,8 @@ Point - Programming and Database Notes
 
 8. Pointer (指针)
    - C/C++: memory address variable
-   - int *ptr = &variable;
-   - Dereference: *ptr
+   - Example: int x = 10; int *ptr = &x;
+   - Dereference: *ptr (value is 10)
 
 9. Percentage Point Calculation (百分比)
    - SQL: CAST(value AS FLOAT) / total * 100
