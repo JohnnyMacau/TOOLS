@@ -1,0 +1,50 @@
+Point - Programming and Database Notes
+
+1. Geometric Point (数据结构)
+   - 2D Point: (x, y)
+   - 3D Point: (x, y, z)
+   - Distance formula: sqrt((x2-x1)^2 + (y2-y1)^2)
+
+2. Decimal Point (精度控制)
+   - Java: BigDecimal for precise decimal calculations
+   - SQL: DECIMAL(precision, scale)
+   - JavaScript: toFixed(n) for n decimal places
+
+3. Floating Point (浮点数)
+   - Float: 32-bit IEEE 754 floating point
+   - Double: 64-bit IEEE 754 floating point
+   - Precision issues: avoid using == for comparison
+
+4. Breakpoint (调试)
+   - IDE debugging tool
+   - Set at specific line to pause execution
+   - Inspect variables and call stack
+
+5. Entry Point (程序入口)
+   - Java: public static void main(String[] args)
+   - C/C++: int main()
+   - Python: if __name__ == "__main__":
+
+6. Endpoint (API)
+   - REST API endpoint URL
+   - Example: GET /api/users/{id}
+   - HTTP methods: GET, POST, PUT, DELETE
+
+7. Checkpoint (检查点)
+   - Database transaction savepoint
+   - SQL: SAVEPOINT point_name
+   - ROLLBACK TO point_name
+
+8. Pointer (指针)
+   - C/C++: memory address variable
+   - int *ptr = &variable;
+   - Dereference: *ptr
+
+9. Percentage Point Calculation (百分比)
+   - SQL: CAST(value AS FLOAT) / total * 100
+   - JavaScript: (value / total * 100).toFixed(2) + '%'
+
+10. Coordinate Point Queries (坐标查询)
+    - PostgreSQL/PostGIS: ST_Point, ST_Distance
+    - MySQL: POINT, ST_Distance_Sphere
+    - Example: SELECT ST_Distance(point1, point2) FROM locations
