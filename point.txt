@@ -45,6 +45,6 @@ Point - Programming and Database Notes
    - JavaScript: (value / total * 100).toFixed(2) + '%'
 
 10. Coordinate Point Queries (坐标查询)
-    - PostgreSQL/PostGIS: ST_Point, ST_Distance
-    - MySQL: POINT, ST_Distance_Sphere
-    - Example: SELECT ST_Distance(point1, point2) FROM locations
+   - PostgreSQL/PostGIS: ST_Point, ST_Distance
+   - MySQL: POINT, ST_Distance_Sphere
+   - Example: SELECT ST_Distance(point1, point2) FROM locations
